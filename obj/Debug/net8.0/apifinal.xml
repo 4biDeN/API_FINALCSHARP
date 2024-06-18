@@ -1,0 +1,304 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>apifinal</name>
+    </assembly>
+    <members>
+        <member name="P:apifinal.BaseDados.Models.TbProduct.Id">
+            <summary>
+            código único gerado pelo DB
+            </summary>
+        </member>
+        <member name="P:apifinal.BaseDados.Models.TbProduct.Description">
+            <summary>
+            Descrição do produto
+            </summary>
+        </member>
+        <member name="P:apifinal.BaseDados.Models.TbProduct.Barcode">
+            <summary>
+            código de barras
+            </summary>
+        </member>
+        <member name="P:apifinal.BaseDados.Models.TbProduct.Barcodetype">
+            <summary>
+            Tipo de código de barras:\nEAN-13   Varejo - Número de 13 dígitos)\nDUN-14  Frete - Número de 14 dígitos) \nUPC - Varejo (América do Norte e Canadá) -​ Número de 12 dígitos\nCODE 11 - Telecomunicações - números de 0 a 9, – e *\nCODE 39 - Automotiva e Defesa - Letras (A a Z), numéros (0 a 9) e (-, ., $, /, +, %, e espaço). Um caractere adicional (denotado ‘*’) é usado para os delimitadores de início e parada.
+            </summary>
+        </member>
+        <member name="P:apifinal.BaseDados.Models.TbProduct.Stock">
+            <summary>
+            Quantidade em estoque
+            </summary>
+        </member>
+        <member name="P:apifinal.BaseDados.Models.TbProduct.Price">
+            <summary>
+            Preço de venda
+            </summary>
+        </member>
+        <member name="P:apifinal.BaseDados.Models.TbProduct.Costprice">
+            <summary>
+            Preço de custo
+            </summary>
+        </member>
+        <member name="T:apifinal.BaseDados.Models.TbPromotion">
+            <summary>
+            Tabela de promoções
+            </summary>
+        </member>
+        <member name="P:apifinal.BaseDados.Models.TbPromotion.Id">
+            <summary>
+            Identificador unico da tabela
+            </summary>
+        </member>
+        <member name="P:apifinal.BaseDados.Models.TbPromotion.Startdate">
+            <summary>
+            Data e hora de inicio da promoção
+            </summary>
+        </member>
+        <member name="P:apifinal.BaseDados.Models.TbPromotion.Enddate">
+            <summary>
+            date e hora final da promoção
+            </summary>
+        </member>
+        <member name="P:apifinal.BaseDados.Models.TbPromotion.Promotiontype">
+            <summary>
+            Tipo de promoção\n0 - % de desconto\n1 - Valor fixo de desconto
+            </summary>
+        </member>
+        <member name="P:apifinal.BaseDados.Models.TbPromotion.Productid">
+            <summary>
+            Código do produto em promoção
+            </summary>
+        </member>
+        <member name="P:apifinal.BaseDados.Models.TbPromotion.Value">
+            <summary>
+            Valor da promoção (Se for tipo 0, é o % se for tipo 1, deve ser o valor monetário)
+            </summary>
+        </member>
+        <member name="T:apifinal.BaseDados.Models.TbSale">
+            <summary>
+            tabela dos documentos de venda
+            </summary>
+        </member>
+        <member name="P:apifinal.BaseDados.Models.TbSale.Id">
+            <summary>
+            código único da tabela (Gerado automaticamente)
+            </summary>
+        </member>
+        <member name="P:apifinal.BaseDados.Models.TbSale.Code">
+            <summary>
+            Código da venda (Um código único da venda, onde todos os items de uma venda, terão o mesmo código). Deve ser uma chave guid.
+            </summary>
+        </member>
+        <member name="P:apifinal.BaseDados.Models.TbSale.Createat">
+            <summary>
+            data de criação do registro
+            </summary>
+        </member>
+        <member name="P:apifinal.BaseDados.Models.TbSale.Productid">
+            <summary>
+            Código do produto
+            </summary>
+        </member>
+        <member name="P:apifinal.BaseDados.Models.TbSale.Price">
+            <summary>
+            Preço unitário de venda
+            </summary>
+        </member>
+        <member name="P:apifinal.BaseDados.Models.TbSale.Qty">
+            <summary>
+            Quantidade vendida
+            </summary>
+        </member>
+        <member name="P:apifinal.BaseDados.Models.TbSale.Discount">
+            <summary>
+            Valor de desconto unitário (Valor em reais)
+            </summary>
+        </member>
+        <member name="T:apifinal.BaseDados.Models.TbStockLog">
+            <summary>
+            Tabela de logs de alteração de estoque de produtos
+            </summary>
+        </member>
+        <member name="P:apifinal.BaseDados.Models.TbStockLog.Id">
+            <summary>
+            Identificador único da tabela
+            </summary>
+        </member>
+        <member name="P:apifinal.BaseDados.Models.TbStockLog.Productid">
+            <summary>
+            Identificador do produto
+            </summary>
+        </member>
+        <member name="P:apifinal.BaseDados.Models.TbStockLog.Qty">
+            <summary>
+            Quantidade movimentada. Se estiver adicionando, deve ser positivo, se tiver retirando / vendendo, deve ser negativo
+            </summary>
+        </member>
+        <member name="P:apifinal.BaseDados.Models.TbStockLog.Createdat">
+            <summary>
+            Data da movimentação
+            </summary>
+        </member>
+        <member name="M:apifinal.Controllers.ProductsController.InsertProduct(apifinal.Services.DTOs.ProductDTO)">
+            <summary>
+            Insere um novo produto.
+            </summary>
+            <param name="productDto">Dados do produto a ser inserido</param>
+            <returns>Retorna o produto inserido</returns>
+            <response code="201">Produto inserido com sucesso</response>
+            <response code="400">Dados de entrada inválidos</response>
+            <response code="500">Erro no Servidor</response>
+        </member>
+        <member name="M:apifinal.Controllers.ProductsController.GetByBarcode(System.String)">
+            <summary>
+            Lista o Produto pelo seu código de barras.
+            </summary>
+            <returns>Retorna o Produto cadastrado com o código de barras fornecido</returns>
+            <response code="200">Retorna o Produto cadastrado</response>
+            <response code="404">Produto não encontrado</response>
+            <response code="500">Erro no Servidor</response>
+        </member>
+        <member name="M:apifinal.Controllers.ProductsController.GetByDescription(System.String)">
+            <summary>
+            Lista produtos por descrição.
+            </summary>
+            <param name="description">Descrição parcial do produto</param>
+            <returns>Retorna a lista de produtos que contém a descrição fornecida</returns>
+            <response code="200">Retorna a lista de produtos</response>
+            <response code="404">Nenhum produto encontrado</response>
+            <response code="500">Erro no Servidor</response>
+        </member>
+        <member name="M:apifinal.Controllers.ProductsController.UpdateProduct(System.String,apifinal.Services.DTOs.ProductUpdateDTO)">
+            <summary>
+            Atualiza um produto existente.
+            </summary>
+            <param name="barcode">Código de barras do produto a ser atualizado</param>
+            <param name="productUpdateDto">Dados do produto a serem atualizados</param>
+            <returns>Retorna o produto atualizado</returns>
+            <response code="200">Produto atualizado com sucesso</response>
+            <response code="404">Produto não encontrado</response>
+            <response code="500">Erro no Servidor</response>
+        </member>
+        <member name="M:apifinal.Controllers.ProductsController.UpdateStock(System.String,apifinal.Services.DTOs.ProductStockUpdateDTO)">
+            <summary>
+            Atualiza o Estoque de um produto existente.
+            </summary>
+            <param name="barcode">Código de barras do produto a ser atualizado</param>
+            <param name="productStockDTO">Dados do estoque a serem atualizados</param>
+            <returns>Retorna o produto atualizado</returns>
+            <response code="200">Produto atualizado com sucesso</response>
+            <response code="404">Produto não encontrado</response>
+            <response code="500">Erro no Servidor</response>
+        </member>
+        <member name="M:apifinal.Controllers.PromotionController.InsertPromotion(apifinal.Services.DTOs.PromotionDTO)">
+            <summary>
+            Insere uma nova promoção.
+            </summary>
+            <param name="promotionDto">Dados da promoção a ser inserida</param>
+            <returns>Retorna a promoção inserida</returns>
+            <response code="201">Promoção inserida com sucesso</response>
+            <response code="400">Dados de entrada inválidos</response>
+            <response code="500">Erro no Servidor</response>
+        </member>
+        <member name="M:apifinal.Controllers.PromotionController.UpdatePromotion(System.Int32,apifinal.Services.DTOs.PromotionDTO)">
+            <summary>
+            Atualiza uma promoção existente.
+            </summary>
+            <param name="id">ID da promoção a ser atualizada</param>
+            <param name="promotionDto">Dados atualizados da promoção</param>
+            <returns>Retorna a promoção atualizada</returns>
+            <response code="200">Promoção atualizada com sucesso</response>
+            <response code="404">Promoção não encontrada</response>
+            <response code="400">Dados de entrada inválidos</response>
+            <response code="500">Erro no Servidor</response>
+        </member>
+        <member name="M:apifinal.Controllers.PromotionController.GetPromotionsByProductAndPeriod(System.Int32,System.DateTime,System.DateTime)">
+            <summary>
+            Busca promoções de um produto em um determinado período.
+            </summary>
+            <param name="productId">ID do produto</param>
+            <param name="startDate">Data de início do período</param>
+            <param name="endDate">Data de fim do período</param>
+            <returns>Retorna a lista de promoções encontradas</returns>
+            <response code="200">Promoções encontradas com sucesso</response>
+            <response code="500">Erro no Servidor</response>
+        </member>
+        <member name="M:apifinal.Controllers.SalesController.CreateSale(apifinal.Services.DTOs.SalesDTO)">
+            <summary>
+            Registra uma nova venda.
+            </summary>
+            <param name="dtoList"></param>
+            <returns>Os detalhes da venda registrada.</returns>
+            <response code="200">Retorna o JSON com os detalhes da venda registrada.</response>
+            <response code="400">Indica que houve um erro de validação nos dados da venda ou que o estoque é insuficiente.</response>
+            <response code="404">Indica que o produto com o ID especificado não foi encontrado.</response>
+        </member>
+        <member name="M:apifinal.Controllers.SalesController.GetById(System.String)">
+            <summary>
+            Obtém os detalhes de uma venda pelo seu código.
+            </summary>
+            <param name="code">O código da venda.</param>
+            <returns>Os detalhes da venda.</returns>
+            <response code="200">Retorna o JSON com os detalhes da venda.</response>
+            <response code="404">Venda não encontrada.</response>
+            <response code="400">Erro ao processar a solicitação.</response>
+        </member>
+        <member name="M:apifinal.Controllers.SalesController.GetSalesReport(System.DateTime,System.DateTime)">
+            <summary>
+            Obtém um relatório de vendas por período.
+            </summary>
+            <param name="startDate">A data de início do período.</param>
+            <param name="endDate">A data de fim do período.</param>
+            <returns>Uma lista de relatórios de vendas agrupados por código da venda.</returns>
+            <response code="200">Indica que o relatório de vendas foi retornado com sucesso.</response>
+            <response code="400">Indica que as datas de início e fim não foram fornecidas ou são inválidas.</response>
+            <response code="404">Indica que não foram encontradas vendas no período especificado.</response>
+            <response code="500">Indica que ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:apifinal.Controllers.StockLogsController.GetStockLogsByProduct(System.String)">
+            <summary>
+            Consulta logs de estoque por produto.
+            </summary>
+            <param name="barcode">Código de barras do produto</param>
+            <returns>Retorna os logs de estoque do produto especificado</returns>
+            <response code="200">Logs de estoque retornados com sucesso</response>
+            <response code="404">Produto não encontrado</response>
+            <response code="500">Erro no Servidor</response>
+        </member>
+        <member name="P:apifinal.Services.DTOs.ProductBaseDTO.Description">
+            <summary>
+            Descrição do produto
+            </summary>
+        </member>
+        <member name="P:apifinal.Services.DTOs.ProductBaseDTO.Barcode">
+            <summary>
+            código de barras
+            </summary>
+        </member>
+        <member name="P:apifinal.Services.DTOs.ProductBaseDTO.Barcodetype">
+            <summary>
+            Tipo de código de barras:\nEAN-13   Varejo - Número de 13 dígitos)\nDUN-14  Frete - Número de 14 dígitos) \nUPC - Varejo (América do Norte e Canadá) -​ Número de 12 dígitos\nCODE 11 - Telecomunicações - números de 0 a 9, – e *\nCODE 39 - Automotiva e Defesa - Letras (A a Z), numéros (0 a 9) e (-, ., $, /, +, %, e espaço). Um caractere adicional (denotado ‘*’) é usado para os delimitadores de início e parada.
+            </summary>
+        </member>
+        <member name="P:apifinal.Services.DTOs.ProductBaseDTO.Price">
+            <summary>
+            Preço de venda
+            </summary>
+        </member>
+        <member name="P:apifinal.Services.DTOs.ProductBaseDTO.Costprice">
+            <summary>
+            Preço de custo
+            </summary>
+        </member>
+        <member name="P:apifinal.Services.DTOs.ProductDTO.Stock">
+            <summary>
+            Quantidade a ser incrementada ou decrementada no estoque
+            </summary>
+        </member>
+        <member name="P:apifinal.Services.DTOs.ProductStockUpdateDTO.Quantity">
+            <summary>
+            Quantidade a ser incrementada ou decrementada no estoque
+            </summary>
+        </member>
+    </members>
+</doc>
